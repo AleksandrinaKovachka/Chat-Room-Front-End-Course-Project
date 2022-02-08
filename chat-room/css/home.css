@@ -1,0 +1,55 @@
+/* * {
+    box-sizing: border-box; makes padding and borders sizes included in the width and height
+}
+
+#inner-body {
+    max-width: 600px;
+    width: 100%;
+    background-color: #b0dbc3;
+    padding: 5px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+} */
+
+body {
+    background-color: #e4e6da;
+}
+
+#main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    height: 100vh;
+    align-content: center;
+}
+
+#inner-body {
+    text-align: center;
+    background-color: #ffff;
+    flex-wrap: wrap;
+    width: 500px;
+    flex-direction: column;
+    padding: 50px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+#logo {
+    width: 100px;
+}
+
+.input-register-btn {
+    margin: 10px 10px 10px 10px;
+    background-color: #38664d;
+    color: white;
+    padding: 10px 40px;
+    text-decoration: none;
+    border-radius: 5px; 
+}
+
+.input-register-btn:hover {
+    background-color: #213d2e;
+}

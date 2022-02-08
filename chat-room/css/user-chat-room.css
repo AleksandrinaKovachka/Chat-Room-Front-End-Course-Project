@@ -1,0 +1,184 @@
+* {
+    box-sizing: border-box; /*makes padding and borders sizes included in the width and height*/
+}
+
+#inner-body {
+    max-width: 600px;
+    width: 100%;
+    background-color: #b0dbc3;
+    padding: 5px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+#nav {
+    display: flex;
+    gap: 15px;
+    height: 60px;
+    padding: 10px;
+}
+
+#nav > * {
+    flex: 1;
+}
+
+#nav > .flex0 {
+    flex: 0;
+}
+
+#notification {
+    display: flex;
+}
+
+#notification-number {
+    color: #213d2e;
+    font-size: 20px;
+    text-shadow: 2px 2px 4px #213d2e;
+}
+
+.hidden {
+    display: none;
+}
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #38664d;
+    color: white;
+    border: none;
+    box-shadow: 2px 2px 4px #213d2e;
+    cursor: pointer;
+}
+
+.icon-btn:hover {
+    box-shadow: 2px 2px 8px #213d2e;
+}
+
+#create-btn {
+    display: block;
+}
+
+#user-name {
+    margin: 0; /*by default is 18...*/
+
+}
+
+#modal-container-create-room {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    padding-top: 300px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+#modal-container-invite {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    padding-top: 300px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #b0dbc3;
+    margin: auto;
+    padding: 10px;
+    width: 30%;
+}
+
+/* .close {
+    color: #38664d;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+} */
+
+#white {
+    color: white;
+}
+  
+.dropdown-content {
+    margin: 5px 5px 5px 5px;
+    display: none;
+    position: fixed;
+    background-color: #38664d;
+    max-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 5px 5px 5px 5px;
+    /* overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1; */
+}
+
+.dropdown-content ul {
+    list-style: none;
+    display: inline;
+}
+  
+.dropdown-content li {
+    color: black;
+    /* text-decoration: none; */
+    display: block;
+}
+  
+.dropdown li:hover {background-color: #b0dbc3;}
+
+#chat-rooms {
+    display: block;
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+    border: 2px solid #213d2e;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+#chat-rooms:hover {
+    background-color: #d6f3e3;
+}
+
+#room-new-massage {
+    float: right;
+    color: #213d2e;
+}
+
+#main {
+    padding: 5px;
+}
+
+#chat-rooms-list {
+    list-style: none;
+    display: inline;
+}
+
+.logout-btn {
+    margin: 2px 2px 2px 2px;
+    background-color: #38664d;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.logout-btn:hover {
+    background-color: #213d2e;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/user-chat-room.css">
+    <link href="fontIcons/css/all.css" rel="stylesheet">
+    <title>User Chat Room</title>
+</head>
+<body>
+    <section id="inner-body">
+        <header id="nav">
+            <h3 id="user-name">UserName</h3>
+            <a href="search-room.html">View All Rooms</a>
+            <div class="flex0 dropdown">
+                <div id="notification">
+                    <button class="icon-btn" title="Notification" id="dropbtn"><i class="fas fa-bell"></i></button>
+                    <span id="notification-number" class="flex0">0</span>
+                </div>
+                <div id="invite-dropdown" class="dropdown-content hidden">
+                    <ul id="list-notification">
+                    </ul>
+                </div>
+            </div>
+            <div class="flex0">
+                <button title="Create chat room" id="create-btn" class="icon-btn"><i class="fas fa-plus-circle"></i></button>
+            </div>
+            <div class="flex0">
+                <a href="login.html" class="logout-btn">Logout</a>
+            </div>
+        </header>
+    
+        <main id="main">
+            <hr id="white">
+            <h4>Chat Rooms:</h4>
+            <ul id="chat-rooms-list">
+            </ul>
+        </main>
+    </section>
+    <div id="modal-container-create-room" class="hidden">
+        <div class="modal-content">
+            <section>
+                <header>
+                    <h3>Create Room</h3>
+                </header>
+                <main>
+                    <div>
+                    <p>Name of the new room:</p>
+                    <input type="Name of Room..." id="create-room-name">
+                    </div>
+                    <div>
+                        <button id="new-room-btn">Create Room</button>
+                    </div>
+                </main>
+            </section>
+        </div>
+    </div>
+    <div id="modal-container-invite" class="hidden">
+        <div class="modal-content">
+            <section>
+                <header>
+                    <h3>Invite Users</h3>
+                </header>
+                <main>
+                    <div>
+                        <p>Do you want to be part of chat room: RoomName</p>
+                        <button id="acceptInvite">Yes</button>
+                        <button id="declineInvite">No</button>
+                    </div>
+                </main>
+            </section>
+        </div>
+    </div>
+    <script src="js/user-chat-room.js" type="text/javascript"></script>
+</body>
+</html>
