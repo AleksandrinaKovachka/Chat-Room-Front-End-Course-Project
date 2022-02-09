@@ -4,37 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/chat-room.css">
     <title>Chat Room</title>
 </head>
 <body>
-    <header>
-        <a href="user-chat-room.html">Back</a>
-        <p>ChatName</p>
-        <a href="invite-users.html">Invite Users</a>
-    </header>
-    <main>
-        <div>
+    <section id="inner-body">
+        <header id="nav">
+            <a href="user-chat-room.html" class="flex0" id="back-btn">Back</a>
+            <p id="chat-name">ChatName</p>
+            <button id="invite-user" class="flex0">Invite</button>
+        </header>
+        <main>
+            <hr id="white">
             <div>
-                <p>UserName1</p>
-                <p>10.01.2022</p>
-                <p>Some text</p>
+                <ul id="msg-list">
+                    <li>
+                        <div id="msg">
+                            <div id="msg-info">
+                                <span id="sender">UserName1</span>
+                                <span id="sending-date">10.01.2022</span>
+                            </div>
+                            <p id="message">Some text</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div id="msg">
+                            <div id="msg-info">
+                                <span id="sender">UserName1</span>
+                                <span id="sending-date">10.01.2022</span>
+                            </div>
+                            <p id="message">Some text</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
-            <div>
-                <p>UserName2</p>
-                <p>10.01.2022</p>
-                <p>Some text text</p>
+            <div id="new-msg">
+                <input type="text" placeholder="Input message..." id="msg-input">
+                <button id="send-msg-btn" class="flex0">Send</button>
             </div>
-            <div>
-                <p>UserName3</p>
-                <p>10.01.2022</p>
-                <p>Some text text text</p>
-            </div>
+        </main>
+    </section>
+    <div id="modal-container-invite-users" class="hidden">
+        <div class="modal-content">
+            <section>
+                <header>
+                    <h3>Users that can be invite in chat room:</h3>
+                    <span id="chat-name">ChatName</span>
+                </header>
+                <main>
+                    <div>
+                        <ul id="user-list">
+                        </ul>
+                    </div>
+                </main>
+            </section>
         </div>
-        <div>
-            <p>Input text:</p>
-            <input type="text">
-            <button>Send</button>
-        </div>
-    </main>
+    </div>
 </body>
 </html>

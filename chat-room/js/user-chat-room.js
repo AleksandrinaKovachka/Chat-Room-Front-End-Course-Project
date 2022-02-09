@@ -109,7 +109,7 @@
   // }
 
 
-const inviteNotification = ["TRoom", "KRoom"];
+const inviteNotification = ["TRoom", "KRoom", "yRoom"];
 let newRoomName = "";
 let numberOfNotification = inviteNotification.length;
 const userName = "User Name" //will get from local storage
@@ -120,7 +120,7 @@ let createBtn = document.getElementById("create-btn");
 let newRoomBtn = document.getElementById("new-room-btn");
 let menuDropDown = document.getElementById("invite-dropdown");
 let notificationBtn = document.getElementById("dropbtn");
-let inviteBtn = document.getElementById("invite-btn");
+// let inviteBtn = document.getElementById("invite-btn");
 let inviteModal = document.getElementById("modal-container-invite");
 
 window.onload = event => {
@@ -163,6 +163,12 @@ notificationBtn.addEventListener("click", () => {
       let li = document.createElement("li");
       li.innerHTML = `<button id="invite-btn">${item}</button>`;
       listOfNotification.appendChild(li);
+
+      let inviteBtn = document.getElementById("invite-btn");
+      inviteBtn.addEventListener("click", () => {
+        menuDropDown.style.display = "none";
+        inviteModal.style.display = "block";
+      })
     })
 
     menuDropDown.style.display = "block";
@@ -172,10 +178,10 @@ notificationBtn.addEventListener("click", () => {
   }
 })
 
-inviteBtn.addEventListener("click", () => {
-  menuDropDown.style.display = "none";
-  inviteModal.style.display = "block";
-})
+// inviteBtn.addEventListener("click", () => {
+//   menuDropDown.style.display = "none";
+//   inviteModal.style.display = "block";
+// })
 
 //TODO:
 //invite array - button don`t work

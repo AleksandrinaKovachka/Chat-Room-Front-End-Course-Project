@@ -49,3 +49,21 @@ body {
 #add-room:hover {
     background-color: #213d2e;
 }
+
+#header-chat-list {
+    display: flex;
+    height: 60px;
+}
+
+#back-btn {
+    margin: 10px 10px 10px 10px;
+    background-color: #38664d;
+    color: white;
+    padding: 10px 10px 10px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+#back-btn:hover {
+    background-color: #213d2e;
+}

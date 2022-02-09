@@ -12,7 +12,7 @@
     <section id="inner-body">
         <header id="nav">
             <h3 id="user-name">UserName</h3>
-            <a href="search-room.html">View All Rooms</a>
+            <a href="chat-room-list.html" id="all-rooms">View All Rooms</a>
             <div class="flex0 dropdown">
                 <div id="notification">
                     <button class="icon-btn" title="Notification" id="dropbtn"><i class="fas fa-bell"></i></button>
@@ -46,8 +46,7 @@
                 </header>
                 <main>
                     <div>
-                    <p>Name of the new room:</p>
-                    <input type="Name of Room..." id="create-room-name">
+                    <input type="text" id="create-room-name" placeholder="Input room name...">
                     </div>
                     <div>
                         <button id="new-room-btn">Create Room</button>
@@ -60,13 +59,13 @@
         <div class="modal-content">
             <section>
                 <header>
-                    <h3>Invite Users</h3>
+                    <h3>Room Invitation</h3>
                 </header>
                 <main>
                     <div>
                         <p>Do you want to be part of chat room: RoomName</p>
-                        <button id="acceptInvite">Yes</button>
-                        <button id="declineInvite">No</button>
+                        <button class="accept-decline-btn">Yes</button>
+                        <button class="accept-decline-btn">No</button>
                     </div>
                 </main>
             </section>
