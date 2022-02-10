@@ -25,6 +25,7 @@ body {
     padding: 10px;
     background-color: #e4e6da;
     border-radius: 5px;
+    align-items: center;
 }
 
 #nav > * {
@@ -37,7 +38,8 @@ body {
 
 #back-btn {
     margin: 10px 10px 10px 10px;
-    background-color: #38664d;
+    background-color: #709e7f;
+    box-shadow: 2px 2px 4px #38664d;
     color: white;
     padding: 10px 40px; /*all can be 10*/
     text-decoration: none;
@@ -45,18 +47,18 @@ body {
 }
 
 #back-btn:hover {
-    background-color: #213d2e;
+    background-color: #38664d;
 }
 
 #chat-name {
     font-size: 28px;
     font-weight: 600;
-    margin-top: 20px;
 }
 
 #invite-user {
     margin: 10px 10px 10px 10px;
-    background-color: #38664d;
+    background-color: #709e7f;
+    box-shadow: 2px #38664d;
     color: white;
     padding: 10px 40px;
     text-decoration: none;
@@ -64,7 +66,7 @@ body {
 }
 
 #invite-user:hover {
-    background-color: #213d2e;
+    background-color: #38664d;
 }
 
 #white {
@@ -144,4 +146,34 @@ body {
     margin: auto;
     padding: 10px;
     width: 30%;
+}
+
+.msg-inf-color {
+    color: gray;
+}
+
+.heading-size {
+    font-size: 20px;
+}
+
+#user-list {
+    list-style: none;
+    display: inline;
+}
+
+#invite-user-box {
+    display: flex;
+}
+
+#invite-btn {
+    margin: 10px 10px 10px 10px;
+    background-color: #38664d;
+    color: white;
+    padding: 10px 40px;
+    text-decoration: none;
+    border-radius: 5px; 
+}
+
+#invite-btn:hover {
+    background-color: #213d2e;
 }

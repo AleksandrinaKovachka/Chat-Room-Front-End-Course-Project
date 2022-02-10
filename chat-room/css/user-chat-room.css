@@ -41,6 +41,7 @@ body {
     padding: 10px;
     background-color: #e4e6da;
     border-radius: 5px;
+    align-items: center;
 }
 
 #nav > * {
@@ -57,7 +58,7 @@ body {
 
 #notification-number {
     color: #213d2e;
-    font-size: 20px;
+    font-size: 14px;
     text-shadow: 2px 2px 4px #213d2e;
 }
 
@@ -69,10 +70,10 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #38664d;
+    background-color: #709e7f;
     color: white;
     border: none;
-    box-shadow: 2px 2px 4px #213d2e;
+    box-shadow: 2px 2px 4px #38664d;
     cursor: pointer;
 }
 
@@ -147,7 +148,7 @@ body {
     margin: 5px 5px 5px 5px;
     display: none;
     position: fixed;
-    background-color: #38664d;
+    background-color: #709e7f;
     max-width: 100px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 5px;
@@ -170,6 +171,7 @@ body {
   
 .dropdown li:hover {
     background-color: #e4e6da;
+    box-shadow: 2px 2px 4px #38664d;
 }
 
 #chat-rooms {
@@ -200,7 +202,8 @@ body {
 
 .logout-btn {
     margin: 2px 2px 2px 2px;
-    background-color: #38664d;
+    background-color: #709e7f;
+    box-shadow: 2px 2px 4px #38664d;
     color: white;
     padding: 5px 10px;
     text-decoration: none;
@@ -208,7 +211,7 @@ body {
 }
 
 .logout-btn:hover {
-    background-color: #213d2e;
+    background-color: #38664d;
 }
 
 #chat-room {
@@ -219,7 +222,8 @@ body {
 
 #all-rooms {
     margin: 2px 2px 2px 2px;
-    background-color: #38664d;
+    background-color: #709e7f;
+    box-shadow: 2px 2px 4px #38664d;
     color: white;
     padding: 5px 10px;
     text-decoration: none;
@@ -227,7 +231,7 @@ body {
 }
 
 #all-rooms:hover {
-    background-color: #213d2e;
+    background-color: #38664d;
 }
 
 #invite-btn {

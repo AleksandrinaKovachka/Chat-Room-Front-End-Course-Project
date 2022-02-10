@@ -21,7 +21,6 @@ body {
 .sign-text {
     font-size: 28px;
     font-weight: 600;
-    margin-top: 30px;
 }
 
 #chat-rooms-list {
@@ -53,11 +52,13 @@ body {
 #header-chat-list {
     display: flex;
     height: 60px;
+    align-items: center;
 }
 
 #back-btn {
     margin: 10px 10px 10px 10px;
-    background-color: #38664d;
+    background-color: #709e7f;
+    box-shadow: 2px 2px 4px #38664d;
     color: white;
     padding: 10px 10px 10px 10px;
     text-decoration: none;
@@ -65,5 +66,5 @@ body {
 }
 
 #back-btn:hover {
-    background-color: #213d2e;
+    background-color: #38664d;
 }
