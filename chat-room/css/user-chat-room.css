@@ -86,6 +86,7 @@ body {
 }
 
 #user-name {
+    font-size: 12px;
     margin: 0; /*by default is 18...*/
 }
 
@@ -200,7 +201,7 @@ body {
     display: inline;
 }
 
-.logout-btn {
+#logout-btn {
     margin: 2px 2px 2px 2px;
     background-color: #709e7f;
     box-shadow: 2px 2px 4px #38664d;
@@ -210,7 +211,7 @@ body {
     border-radius: 5px;
 }
 
-.logout-btn:hover {
+#logout-btn:hover {
     background-color: #38664d;
 }
 
@@ -218,6 +219,14 @@ body {
     text-decoration: none;
     color: #213d2e;
     font-size: 20px;
+
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 }
 
 #all-rooms {

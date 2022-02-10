@@ -1,20 +1,21 @@
-const registerBtn = document.getElementById("register-btn");
-let userEmail = document.getElementById("email");
-let userPassword = document.getElementById("password");
-let firstUserName = document.getElementById("first-name");
-let secondUserName = document.getElementById("second-name");
+const registerForm = document.getElementById("register-form");
 
-registerBtn.addEventListener("click", () => {
-    console.log('Test');
-    // if(userEmail.value === "" || userPassword.value === "" || firstUserName.value === "" || secondUserName.value === "") {
-    //     alert("Input correct email, name or password");
-    // } else {
-    //     //check if have this user - alert
-    //     //if register success - go to user chat room
-    //     localStorage.setItem("username", firstUserName + secondUserName);
-    //     location.href = "user-chat-room.html";
-    // }
-
-    localStorage.setItem("username", firstUserName + secondUserName);
-    location.href = "user-chat-room.html";
+registerForm.addEventListener("submit", (event) => {
+    console.log("test");
+    let formData = new FormData(event.target);
+    event.preventDefault();
+ 
+    const email = formData.get('email');
+    const username = formData.get('first-name') + formData.get('second-name');
+    const password = formData.get('password');
+    const confirmPassword = formData.get('confirm-password');
+    
+    if(password === confirmPassword) {
+        //check if have user with this email
+        localStorage.setItem("username", username)
+        location.href = "user-chat-room.html";
+    }
+    else {
+        alert("Wrong credentials")
+    }
 })

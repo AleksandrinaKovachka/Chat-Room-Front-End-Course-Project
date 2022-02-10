@@ -112,7 +112,7 @@
 const inviteNotification = ["TRoom", "KRoom", "yRoom"];
 let newRoomName = "";
 let numberOfNotification = inviteNotification.length;
-const userName = "User Name" //will get from local storage
+const userName = sessionStorage.getItem("username")
 let userRooms = [["General", 25], ["Room1", 2], ["Room2", 10], ["Room3", 25]];
 
 let createRoomModal = document.getElementById("modal-container-create-room");
@@ -120,18 +120,28 @@ let createBtn = document.getElementById("create-btn");
 let newRoomBtn = document.getElementById("new-room-btn");
 let menuDropDown = document.getElementById("invite-dropdown");
 let notificationBtn = document.getElementById("dropbtn");
-// let inviteBtn = document.getElementById("invite-btn");
 let inviteModal = document.getElementById("modal-container-invite");
+let logoutBtn = document.getElementById("logout-btn");
+let acceptBtn = document.getElementById("accept-invite");
+let declineBtn = document.getElementById("decline-invite");
 
 window.onload = event => {
   document.getElementById("user-name").textContent = userName;
   document.getElementById("notification-number").textContent = numberOfNotification;
 
+  //get rooms from database
   let chatRooms = document.getElementById("chat-rooms-list");
   userRooms.forEach(item => {
     let li = document.createElement("li");
-    li.innerHTML = `<div id="chat-rooms"><a href="chat-room.html" id="chat-room">${item[0]}</a><span id="room-new-massage">${item[1]} new massage</span></div>`;
+    li.innerHTML = `<div id="chat-rooms"><button id="chat-room">${item[0]}</button><span id="room-new-massage">${item[1]} new massage</span></div>`;
     chatRooms.appendChild(li);
+
+    let chatRoom = document.getElementById("chat-room");
+    chatRoom.addEventListener("click", () => {
+      //get name of the room - update unread message to 0 (in the database)
+      console.log(chatRoom.name);
+      location.href = "chat-room.html";
+    })
   })
 }
 
@@ -167,6 +177,8 @@ notificationBtn.addEventListener("click", () => {
       let inviteBtn = document.getElementById("invite-btn");
       inviteBtn.addEventListener("click", () => {
         menuDropDown.style.display = "none";
+        console.log(inviteBtn.name);
+        //name of room to change !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         inviteModal.style.display = "block";
       })
     })
@@ -178,10 +190,19 @@ notificationBtn.addEventListener("click", () => {
   }
 })
 
-// inviteBtn.addEventListener("click", () => {
-//   menuDropDown.style.display = "none";
-//   inviteModal.style.display = "block";
-// })
+logoutBtn.addEventListener("click", () => {
+  sessionStorage.clear();
+  location.href = "login.html";
+})
 
-//TODO:
-//invite array - button don`t work
+acceptBtn.addEventListener("click", () => {
+  console.log("accept");
+  inviteModal.style.display = "none"
+  //remove from array - from database
+})
+
+declineBtn.addEventListener("click", () => {
+  console.log("decline");
+  inviteModal.style.display = "none"
+  //remove from array - from database
+})
