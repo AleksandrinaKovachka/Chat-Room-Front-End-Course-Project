@@ -1,6 +1,9 @@
   // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js";
-  import { database } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js";
+  import { initializeApp } from 'firebase/app';
+  import { getDatabase } from "firebase/database";
+
+  import { getAuth, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword  } from "firebase/auth";
+
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,3 +22,12 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   export const database = getDatabase(app);
+ 
+  export const register = (email, password, username) => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      //create user
+      console.log(userCredential.user);
+   })
+ }
