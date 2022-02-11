@@ -36,8 +36,7 @@ body {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-#add-room {
-    /* margin: 10px 10px 10px 10px; */
+/* #add-room {
     background-color: #38664d;
     color: white;
     padding: 10px 40px;
@@ -46,6 +45,18 @@ body {
 }
 
 #add-room:hover {
+    background-color: #213d2e;
+} */
+
+.add-room-class {
+    background-color: #38664d;
+    color: white;
+    padding: 10px 40px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.add-room-class:hover {
     background-color: #213d2e;
 }
 

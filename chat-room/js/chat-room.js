@@ -4,8 +4,8 @@ const msgArr = [["User1", "10.02.2022 22:20", "some messsage"], ["User2", "10.02
 let inviteUserModal = document.getElementById("modal-container-invite-users");
 let inviteUserBtn = document.getElementById("invite-user");
 let messageInput = document.getElementById("msg-input");
-
 let sendMsgBtn = document.getElementById("send-msg-btn");
+let chatName = document.getElementById("chat-name").textContent = sessionStorage.getItem("roomName");
 
 window.onload = event => {
   let msgList = document.getElementById("msg-list");
@@ -32,31 +32,37 @@ window.addEventListener("click", (event) => {
 })
 
 sendMsgBtn.addEventListener("click", () => {
-    console.log(messageInput.value);
-    messageInput.value = "";
-    //save message to char room - update message
+  //save message to chat room - update message
+  console.log(messageInput.value);
+  // msgArr.push([sessionStorage.getItem("username"), Date.now(), messageInput.value]);
+  messageInput.value = "";
 })
 
 inviteUserBtn.addEventListener("click", () => {
-    let listOfUsers = document.getElementById("user-list");
-    listOfUsers.innerHTML = "";
-    //get users from database
-    users.forEach(item => {
-      let li = document.createElement("li");
-      li.innerHTML = `<div id="invite-user-box">
+  let listOfUsers = document.getElementById("user-list");
+  listOfUsers.innerHTML = "";
+  //get users from database
+  users.forEach((item, index) => {
+    let li = document.createElement("li");
+    li.innerHTML = `
+    <div id="invite-user-box">
       <p id="user-name">${item}</p>
-      <button id="invite-btn">Invite</button>
+      <button id="invite-btn-${index}" class="invite-btn-class">Invite</button>
     </div>`;
-      listOfUsers.appendChild(li);
+    listOfUsers.appendChild(li);
 
-      let inviteBtn = document.getElementById("invite-btn");
-      inviteBtn.addEventListener("click", () => {
-        //get username - added invite to this user
-        inviteUserModal.style.display = "none";
-      })
+    let inviteBtn = document.getElementById(`invite-btn-${index}`);
+    inviteBtn.addEventListener("click", () => {
+      //get username - added invite to this user
+      console.log(item);
+      users.splice(index, 1);
+
+      inviteUserModal.style.display = "none";
     })
+  })
 
-    inviteUserModal.style.display = "block";
+  document.getElementById("chat-name-modal").textContent = sessionStorage.getItem("roomName");
+  inviteUserModal.style.display = "block";
 })
 
 

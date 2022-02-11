@@ -124,6 +124,7 @@ let inviteModal = document.getElementById("modal-container-invite");
 let logoutBtn = document.getElementById("logout-btn");
 let acceptBtn = document.getElementById("accept-invite");
 let declineBtn = document.getElementById("decline-invite");
+let inviteChatRoomNameEl = document.getElementById("invite-room-name");
 
 window.onload = event => {
   document.getElementById("user-name").textContent = userName;
@@ -131,15 +132,15 @@ window.onload = event => {
 
   //get rooms from database
   let chatRooms = document.getElementById("chat-rooms-list");
-  userRooms.forEach(item => {
+  userRooms.forEach((item, index) => {
     let li = document.createElement("li");
-    li.innerHTML = `<div id="chat-rooms"><button id="chat-room">${item[0]}</button><span id="room-new-massage">${item[1]} new massage</span></div>`;
+    li.innerHTML = `<div id="chat-rooms"><button id="chat-room-${index}" class="chat-room-class">${item[0]}</button><span id="room-new-massage">${item[1]} new massage</span></div>`;
     chatRooms.appendChild(li);
 
-    let chatRoom = document.getElementById("chat-room");
+    let chatRoom = document.getElementById(`chat-room-${index}`);
     chatRoom.addEventListener("click", () => {
       //get name of the room - update unread message to 0 (in the database)
-      console.log(chatRoom.name);
+      sessionStorage.setItem("roomName", item[0]);
       location.href = "chat-room.html";
     })
   })
@@ -169,17 +170,17 @@ notificationBtn.addEventListener("click", () => {
   if(menuDropDown.style.display == "none" && inviteNotification.length !== 0) {
     let listOfNotification = document.getElementById("list-notification");
     listOfNotification.innerHTML = "";
-    inviteNotification.forEach(item => {
+    inviteNotification.forEach((item, index) => {
       let li = document.createElement("li");
-      li.innerHTML = `<button id="invite-btn">${item}</button>`;
+      li.innerHTML = `<button id="invite-btn-${index}" class="invite-btn-class">${item}</button>`;
       listOfNotification.appendChild(li);
 
-      let inviteBtn = document.getElementById("invite-btn");
+      let inviteBtn = document.getElementById(`invite-btn-${index}`);
       inviteBtn.addEventListener("click", () => {
         menuDropDown.style.display = "none";
-        console.log(inviteBtn.name);
-        //name of room to change !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
         inviteModal.style.display = "block";
+        inviteChatRoomNameEl.textContent = item;
       })
     })
 

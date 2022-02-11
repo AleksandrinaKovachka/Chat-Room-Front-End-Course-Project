@@ -124,7 +124,7 @@ body {
     border-radius: 5px;
     margin: auto;
     padding: 10px;
-    width: 30%;
+    width: 40%;
 }
 
 /* .close {
@@ -214,8 +214,22 @@ body {
 #logout-btn:hover {
     background-color: #38664d;
 }
-
+/* 
 #chat-room {
+    text-decoration: none;
+    color: #213d2e;
+    font-size: 20px;
+
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+} */
+
+.chat-room-class {
     text-decoration: none;
     color: #213d2e;
     font-size: 20px;
@@ -243,7 +257,17 @@ body {
     background-color: #38664d;
 }
 
-#invite-btn {
+/* #invite-btn {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+} */
+
+.invite-btn-class {
     background: none;
     color: inherit;
     border: none;

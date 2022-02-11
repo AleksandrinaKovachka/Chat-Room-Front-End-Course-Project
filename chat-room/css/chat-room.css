@@ -165,7 +165,7 @@ body {
     display: flex;
 }
 
-#invite-btn {
+/* #invite-btn {
     margin: 10px 10px 10px 10px;
     background-color: #38664d;
     color: white;
@@ -175,5 +175,18 @@ body {
 }
 
 #invite-btn:hover {
+    background-color: #213d2e;
+} */
+
+.invite-btn-class {
+    margin: 10px 10px 10px 10px;
+    background-color: #38664d;
+    color: white;
+    padding: 10px 40px;
+    text-decoration: none;
+    border-radius: 5px; 
+}
+
+.invite-btn-class:hover {
     background-color: #213d2e;
 }
