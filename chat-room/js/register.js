@@ -1,3 +1,5 @@
+import { database } from "./db-test";
+
 const registerForm = document.getElementById("register-form");
 
 registerForm.addEventListener("submit", (event) => {
@@ -12,10 +14,16 @@ registerForm.addEventListener("submit", (event) => {
     
     if(password === confirmPassword) {
         //check if have user with this email
-        localStorage.setItem("username", username)
+        sessionStorage.setItem("username", username)
         location.href = "user-chat-room.html";
     }
     else {
         alert("Wrong credentials")
     }
+})
+
+const dataRef = ref(database, "users");
+
+set (dataRef, {
+    "a": "b"
 })
