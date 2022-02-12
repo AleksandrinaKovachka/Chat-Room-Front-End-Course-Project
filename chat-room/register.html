@@ -13,7 +13,7 @@
             <h3 class="sign-text">Sign up</h3>
             <form id="register-form">
                 <div class="input-container">
-                    <input type="email" name="email" required placeholder="E-mail*" />
+                    <input type="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="E-mail*" />
                 </div>
                 <div class="input-container">
                     <input type="text" name="first-name" required placeholder="First Name*" />
@@ -22,10 +22,10 @@
                     <input type="text" name="second-name" required placeholder="Second Name*" />
                 </div>
                 <div class="input-container">
-                    <input type="password" name="password" required placeholder="Password*"/>
+                    <input type="password" name="password" required minlength="6" placeholder="Password*"/>
                 </div>
                 <div class="input-container">
-                    <input type="password" name="confirm-password" required placeholder="Confirm password*"/>
+                    <input type="password" name="confirm-password" minlength="6" required placeholder="Confirm password*"/>
                 </div>
                 <button class="form-btn">Sign up</button>
             </form>

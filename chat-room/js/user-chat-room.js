@@ -112,7 +112,7 @@
 const inviteNotification = ["TRoom", "KRoom", "yRoom"];
 let newRoomName = "";
 let numberOfNotification = inviteNotification.length;
-const userName = sessionStorage.getItem("username")
+const userName = sessionStorage.getItem("userEmail");
 let userRooms = [["General", 25], ["Room1", 2], ["Room2", 10], ["Room3", 25]];
 
 let createRoomModal = document.getElementById("modal-container-create-room");

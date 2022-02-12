@@ -13,12 +13,10 @@
             <h3 class="sign-text">Sign in</h3>
             <form id="login-form">
                 <div class="input-container">
-                    <input type="text" name="username" required placeholder="Username"/> 
-                    <!-- required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" -->
+                    <input type="text" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email"/>
                 </div>
                 <div class="input-container">
-                    <input type="password" name="password" required placeholder="Password"/>
-                    <!-- required class="password" name="password" minlength="6" placeholder="Password" autocomplete="on" -->
+                    <input type="password" name="password" required minlength="6" placeholder="Password"/>
                 </div>
                 <button class="form-btn">Sign in</button>
             </form>
