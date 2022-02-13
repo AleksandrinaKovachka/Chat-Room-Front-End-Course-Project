@@ -108,11 +108,12 @@
     // }
   // }
 
+import { getUserData } from "./database";
 
-const inviteNotification = ["TRoom", "KRoom", "yRoom"];
+let inviteNotification = ["TRoom", "KRoom", "yRoom"];
 let newRoomName = "";
 let numberOfNotification = inviteNotification.length;
-const userName = sessionStorage.getItem("userEmail");
+let userName;
 let userRooms = [["General", 25], ["Room1", 2], ["Room2", 10], ["Room3", 25]];
 
 let createRoomModal = document.getElementById("modal-container-create-room");
@@ -126,21 +127,44 @@ let acceptBtn = document.getElementById("accept-invite");
 let declineBtn = document.getElementById("decline-invite");
 let inviteChatRoomNameEl = document.getElementById("invite-room-name");
 
-window.onload = event => {
+window.onload = (event) => {
+  getDataForPage();
+  setDataToPage();
+}
+
+const getDataForPage = () => {
+  console.log("database");
+  // getUserData(sessionStorage.getItem("userEmail")).then(() => {
+  //   userName = sessionStorage.getItem("username");
+  //   inviteNotification = JSON.parse(sessionStorage.getItem("chat-room-names"));
+  //   console.log(inviteNotification);
+  //   userRooms = JSON.parse(sessionStorage.getItem("notification"));
+  //   console.log(userRooms);
+  // });
+
+  userName = sessionStorage.getItem("username");
+  inviteNotification = JSON.parse(sessionStorage.getItem("chat-room-names"));
+  console.log(inviteNotification);
+  userRooms = JSON.parse(sessionStorage.getItem("notification"));
+  console.log(userRooms);
+}
+
+const setDataToPage = () => {
+  console.log("after database");
   document.getElementById("user-name").textContent = userName;
-  document.getElementById("notification-number").textContent = numberOfNotification;
+  document.getElementById("notification-number").textContent = inviteNotification.length;
 
   //get rooms from database
   let chatRooms = document.getElementById("chat-rooms-list");
   userRooms.forEach((item, index) => {
     let li = document.createElement("li");
-    li.innerHTML = `<div id="chat-rooms"><button id="chat-room-${index}" class="chat-room-class">${item[0]}</button><span id="room-new-massage">${item[1]} new massage</span></div>`;
+    li.innerHTML = `<div id="chat-rooms"><button id="chat-room-${index}" class="chat-room-class">${item["chat-name"]}</button><span id="room-new-massage">${item["unread-message"]} new massage</span></div>`;
     chatRooms.appendChild(li);
 
     let chatRoom = document.getElementById(`chat-room-${index}`);
     chatRoom.addEventListener("click", () => {
       //get name of the room - update unread message to 0 (in the database)
-      sessionStorage.setItem("roomName", item[0]);
+      sessionStorage.setItem("roomName", item["chat-name"]);
       location.href = "chat-room.html";
     })
   })

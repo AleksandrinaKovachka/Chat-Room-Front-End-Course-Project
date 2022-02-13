@@ -16,7 +16,7 @@ registerForm.addEventListener("submit", (event) => {
 
         let validUser;
         sessionStorage.clear();
-        register(email, password).then(() => {
+        register(email, password, username).then(() => {
           validUser = sessionStorage.getItem("userEmail");
           if (validUser) {
               location.href = "user-chat-room.html";

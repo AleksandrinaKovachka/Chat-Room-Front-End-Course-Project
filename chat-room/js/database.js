@@ -1,8 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getDatabase } from "firebase/database";
+import { getDatabase, ref, set, push, query, onValue, update, get, child } from "firebase/database";
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
+import { async } from '@firebase/util';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDlWdM3nz51iocnHIN6maKiX7IIH_LoiNw",
@@ -19,13 +20,13 @@ const app = initializeApp(firebaseConfig);
 export const database = getDatabase(app);
 
 //register user
-export const register = (email, password) => {
+export const register = (email, password, username) => {
   const auth = getAuth();
   return createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
+    createUser(username, email);
     sessionStorage.setItem("userEmail", userCredential.user.email);
-    //create user
-      
+    // const user = createUser(username, email);
  })
   .catch((error) => {
     const errorCode = error.code;
@@ -35,7 +36,7 @@ export const register = (email, password) => {
 }
 
 //login user
-export const login = (email, password) => {
+export const login = async (email, password) => {
   const auth = getAuth();
   return signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
@@ -47,3 +48,173 @@ export const login = (email, password) => {
     console.log(errorMessage);
   });
 }
+
+//TODO: users
+//create user
+const createUser = (username, email) => {
+  const dataRefUsers = ref(database, 'users');
+  // const userRef = push(dataRefUsers);
+  const user = {
+    "email": email,
+    "username": username,
+    "chat-room-names": [{
+      "chat-name": "General",
+      "unread-message": 0
+      }],
+    "notification": []
+  };
+  return push(dataRefUsers, user);
+}
+//get all users
+let userNameArr = [];
+const getAllUsers = () => {
+  const dataRefUsers = ref(database, 'users');
+  onValue(dataRefUsers, (snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+      const childKey = childSnapshot.key;
+      const childData = childSnapshot.val();
+      // let tempArr = [];
+      // tempArr.push(childKey);
+      // tempArr.push(childData.username);
+      // userNameArr[index++] = childKey;
+      const element = childData.username;
+      userNameArr.push(childData.username); 
+    });
+    console.log(userNameArr);
+  })
+  // return userNameArr;
+}
+
+//get user data with userId
+export const getUserData = (email) => {
+  const dataRefUsers = ref(database, 'users');
+  onValue(dataRefUsers, (snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+      const childKey = childSnapshot.key;
+      const childData = childSnapshot.val();
+      if (childData.email === email) {
+        // console.log(childData);
+        let userId = childKey;
+        let username = childData.username;
+        let email = childData.email;
+        let chatRoomName = childData["chat-room-names"];
+        let chatRoomArr = [];
+        chatRoomName.forEach(item => {
+          chatRoomArr.push({"chat-name": item["chat-name"], "unread-message": item["unread-message"]});
+        })
+        let notifArr = [];
+        if(childData["notification"]) {
+          let notification = childData["notification"];
+          notification.forEach(item => {
+            notifArr.push(item);
+          })
+        }
+
+        const userData = {
+          "email": email,
+          "username": username,
+          "chat-room-names": chatRoomArr,
+          "notification": notifArr
+        };
+
+        sessionStorage.setItem("userData", JSON.stringify(userData));
+        sessionStorage.setItem("userId", userId);
+      }
+    });
+  })
+  return true;
+}
+
+// const getUserWithId = (userId) => {
+//   // const userRef = ref(database, `users/${userId}`);
+//   get(child(database, `users/${userId}`)).then((snapshot) => {
+//     if (snapshot.exists()) {
+//       console.log(snapshot.val());
+//     } else {
+//       console.log("No data available");
+//     }
+//   }).catch((error) => {
+//     console.error(error);
+//   });
+// }
+
+// console.log(getUserWithId("-Mvi6ppfWFUnAB8kM2jo"));
+
+// export const getUserData = async (email) => {
+//   console.log("Test");
+//   const dataRefUsers = ref(database, 'users');
+//   onValue(dataRefUsers, (snapshot) => {
+//     snapshot.forEach((childSnapshot) => {
+//       const childKey = childSnapshot.key;
+//       const childData = childSnapshot.val();
+//       if (childData.email === email) {
+//         console.log(childData);
+//         sessionStorage.setItem("userId", childKey);
+//         sessionStorage.setItem("username", childData.username);
+//         sessionStorage.setItem("email", email);
+//         sessionStorage.setItem("chat-room-names", JSON.stringify(childData["chat-room-names"]));
+//         if(childData["notification"]) {
+//           sessionStorage.setItem("notification", JSON.stringify(childData["notification"]));
+//         }
+//       }
+//     });
+//   })
+//   return dataRefUsers;
+// }
+
+// const getUserData = (key) => {
+//   const dataRefUsers = ref(database, `users/${key}`);
+//   let userData = {};
+//   onValue(dataRefUsers, (snapshot) => {
+//     // console.log(snapshot.val());
+//     console.log(snapshot.val());
+//     // Object.assign(userData, snapshot.val());
+//     // console.log(userData);
+//   })
+
+//   // console.log(userData); 
+//   return userData;
+// }
+
+// const updateUser = (user, userId) => {
+//   const dataRefUsers = ref(database, `users/${userId}`);
+//   return update(dataRefUsers, user);
+// }
+
+// const updateUserTest = () => {
+//   const userId = "-Mvi6ppfWFUnAB8kM2jo";
+//   let userData = getUserData(userId);
+//   console.log(userData);
+//   // console.log(JSON.parse(JSON.stringify(userData)));
+//   // console.log(userData.username);
+//   // const newUserData = {
+//   //   "chat-room-names": userData["chat-room-names"],
+//   //   "email": userData["email"],
+//   //   "username": "Test"
+//   // };
+//   // console.log(newUserData);
+
+//   // updateUser(userData, userId);
+// }
+
+// updateUserTest();
+
+//add chat room to user
+//change unreaf message
+//change notification
+
+//TODO: chat room
+//create chat room
+const createNewRoom = (chatRoomName) => {
+  const dataRefRooms = ref(database, "chat-rooms");
+  const chatRoomRef = push(dataRefRooms);
+  const chatRoom = {
+    "name": chatRoomName,
+    "messages": [],
+    "user-to-invite": [] // get all users
+  }
+  return set(chatRoomRef, chatRoom);
+}
+
+//add message
+//change list of invite users
