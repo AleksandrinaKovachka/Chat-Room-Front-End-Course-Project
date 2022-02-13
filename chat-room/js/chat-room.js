@@ -107,7 +107,7 @@ onChildAdded(dataRefRooms, (data) => {
       <div id="msg">
         <div id="msg-info">
           <span id="sender" class="msg-inf-color">${item["username"]}</span>
-          <span id="sending-date" class="msg-inf-color">${item["date"]}</span>
+          <span id="sending-date" class="msg-inf-color">${new Date(item["date"]).toLocaleString()}</span>
         </div>
         <p id="message">${item["message"]}</p>
       </div>`;
@@ -137,7 +137,7 @@ onChildChanged(dataRefRooms, (data) => {
       <div id="msg">
         <div id="msg-info">
           <span id="sender" class="msg-inf-color">${item["username"]}</span>
-          <span id="sending-date" class="msg-inf-color">${item["date"]}</span>
+          <span id="sending-date" class="msg-inf-color">${new Date(item["date"]).toLocaleString()}</span>
         </div>
         <p id="message">${item["message"]}</p>
       </div>`;

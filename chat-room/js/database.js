@@ -243,7 +243,6 @@ export const createNewRoom = (chatRoomName) => {
 
 export const updateUser = (user, userId) => {
   const dataRefUsers = ref(database, `users/${userId}`);
-  console.log(user);
   return update(dataRefUsers, user);
 }
 
