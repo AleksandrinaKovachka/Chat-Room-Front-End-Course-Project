@@ -24,6 +24,7 @@ onChildAdded(dataRefUsers, (data) => {
   if (data.val().email === sessionStorage.getItem("userEmail")) {
     userId = data.key;
     userName = data.val().username;
+    sessionStorage.setItem("username", userName);
     userEmail = data.val().email;
 
     let chatRoomName = data.val()["chat-room-names"];

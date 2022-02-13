@@ -236,7 +236,7 @@ export const createNewRoom = (chatRoomName) => {
   const dataRefRooms = ref(database, 'chat-rooms');
   const chatRoom = {
     "name": chatRoomName,
-    "messages": []
+    "messages": [] // {"username": "date": "message"}
   }
   return push(dataRefRooms, chatRoom);
 }
@@ -244,4 +244,11 @@ export const createNewRoom = (chatRoomName) => {
 export const updateUser = (user, userId) => {
   const dataRefUsers = ref(database, `users/${userId}`);
   return update(dataRefUsers, user);
+}
+
+export const dataRefRooms = ref(database, 'chat-rooms');
+
+export const updateChatRoom = (chatRoom, chatId) => {
+  const dataRefChat = ref(database, `chat-rooms/${chatId}`);
+  return update(dataRefChat, chatRoom);
 }
