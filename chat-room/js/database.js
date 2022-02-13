@@ -125,7 +125,6 @@ export const getUserData = (email) => {
   })
 }
 
-// getUserData("test@gmail.com");
 
 export const dataRefUsers = ref(database, 'users');
 // onChildAdded(dataRefUsers, (data) => {
@@ -216,16 +215,33 @@ export const dataRefUsers = ref(database, 'users');
 
 //TODO: chat room
 //create chat room
-const createNewRoom = (chatRoomName) => {
-  const dataRefRooms = ref(database, "chat-rooms");
-  const chatRoomRef = push(dataRefRooms);
-  const chatRoom = {
-    "name": chatRoomName,
-    "messages": [],
-    "user-to-invite": [] // get all users
-  }
-  return set(chatRoomRef, chatRoom);
-}
+// const createNewRoom = (chatRoomName) => {
+//   const dataRefRooms = ref(database, "chat-rooms");
+//   const chatRoomRef = push(dataRefRooms);
+//   const chatRoom = {
+//     "name": chatRoomName,
+//     "messages": [],
+//     "user-to-invite": [] // get all users
+//   }
+//   return set(chatRoomRef, chatRoom);
+// }
 
 //add message
 //change list of invite users
+
+//----------------------------------------------------Chat Room---------------------------------------------
+
+
+export const createNewRoom = (chatRoomName) => {
+  const dataRefRooms = ref(database, 'chat-rooms');
+  const chatRoom = {
+    "name": chatRoomName,
+    "messages": []
+  }
+  return push(dataRefRooms, chatRoom);
+}
+
+export const updateUser = (user, userId) => {
+  const dataRefUsers = ref(database, `users/${userId}`);
+  return update(dataRefUsers, user);
+}
