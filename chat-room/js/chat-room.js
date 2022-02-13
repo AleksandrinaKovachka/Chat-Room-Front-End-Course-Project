@@ -147,24 +147,6 @@ onChildChanged(dataRefRooms, (data) => {
   }
 })
 
-// window.onload = event => {
-//   let msgList = document.getElementById("msg-list");
-
-//   msgArr.forEach(item => {
-//     let li = document.createElement("li");
-//     li.innerHTML = `
-//     <div id="msg">
-//       <div id="msg-info">
-//         <span id="sender" class="msg-inf-color">${item[0]}</span>
-//         <span id="sending-date" class="msg-inf-color">${item[1]}</span>
-//       </div>
-//       <p id="message">${item[2]}</p>
-//     </div>`;
-//     msgList.appendChild(li);
-//   })
-
-// }
-
 window.addEventListener("click", (event) => {
   if (event.target == inviteUserModal) {
     inviteUserModal.style.display = "none";
@@ -186,7 +168,8 @@ sendMsgBtn.addEventListener("click", () => {
       if(item["chat-name"] === chatName) {
         item["unread-message"] += 1;
 
-        if(user["username"] === sessionStorage.getItem("username")) {
+        if(user["email"] === sessionStorage.getItem("userEmail")) {
+          console.log("I am");
           item["unread-message"] = 0;
         }
       }
@@ -221,7 +204,7 @@ inviteUserBtn.addEventListener("click", () => {
     inviteBtn.addEventListener("click", () => {
       //get username - added invite to this user
       usersData.forEach(user => {
-        if(user.username === item) {
+        if(user.username === item && user["userId"] != sessionStorage.getItem("userId")) {
           //update notification of this user
           user["notification"].push(chatName);
           const userDataToUpdate = {
@@ -234,7 +217,6 @@ inviteUserBtn.addEventListener("click", () => {
           updateUser(userDataToUpdate, user.userId);
         }
       })
-      console.log(item);
       // usersName.splice(index, 1);
 
       inviteUserModal.style.display = "none";

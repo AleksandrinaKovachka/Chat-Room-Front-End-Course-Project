@@ -25,6 +25,7 @@ onChildAdded(dataRefUsers, (data) => {
     userId = data.key;
     userName = data.val().username;
     sessionStorage.setItem("username", userName);
+    sessionStorage.setItem("userId", userId);
     userEmail = data.val().email;
 
     let chatRoomName = data.val()["chat-room-names"];
@@ -116,6 +117,7 @@ newRoomBtn.addEventListener("click", () => {
   newRoomName = document.getElementById("create-room-name").value;
   document.getElementById("create-room-name").value = "";
   createRoomModal.style.display = "none";
+  updateRoomsOfUser();
   //create new rooms
   createNewRoom(newRoomName);
   //listen for update in user rooms - update user chatNames with room names
@@ -123,6 +125,16 @@ newRoomBtn.addEventListener("click", () => {
     "chat-name": newRoomName,
     "unread-message": 0
   })
+  // const updateUserData = {
+  //   "username": userName,
+  //   "email": userEmail,
+  //   "chat-room-names": userRooms,
+  //   "notification": inviteNotification
+  // }
+  // updateUser(updateUserData, userId);
+})
+
+const updateRoomsOfUser = () => {
   const updateUserData = {
     "username": userName,
     "email": userEmail,
@@ -130,7 +142,7 @@ newRoomBtn.addEventListener("click", () => {
     "notification": inviteNotification
   }
   updateUser(updateUserData, userId);
-})
+}
 
 notificationBtn.addEventListener("click", () => {
   if(menuDropDown.style.display == "none" && inviteNotification.length !== 0) {
@@ -143,6 +155,7 @@ notificationBtn.addEventListener("click", () => {
 
       let inviteBtn = document.getElementById(`invite-btn-${index}`);
       inviteBtn.addEventListener("click", () => {
+        newRoomName = item;
         menuDropDown.style.display = "none";
         
         inviteModal.style.display = "block";
@@ -163,13 +176,32 @@ logoutBtn.addEventListener("click", () => {
 })
 
 acceptBtn.addEventListener("click", () => {
-  console.log("accept");
   inviteModal.style.display = "none"
+  // remove this invite
+  removeInvite();
   //remove from array - from database
+  userRooms.push({
+    "chat-name": newRoomName,
+    "unread-message": 0
+  })
+  updateRoomsOfUser();
 })
 
 declineBtn.addEventListener("click", () => {
-  console.log("decline");
   inviteModal.style.display = "none"
+  //remove this invite
+  removeInvite();
   //remove from array - from database
+  updateRoomsOfUser();
 })
+
+const removeInvite = () => {
+  let position;
+  inviteNotification.forEach((item, index) => {
+    if(item === newRoomName) {
+      position = index;
+    }
+  })
+
+  inviteNotification.splice(position, 1);
+}

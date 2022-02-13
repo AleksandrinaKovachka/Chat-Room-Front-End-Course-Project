@@ -52,8 +52,8 @@ export const login = async (email, password) => {
 //TODO: users
 //create user
 const createUser = (username, email) => {
+  console.log("new user");
   const dataRefUsers = ref(database, 'users');
-  // const userRef = push(dataRefUsers);
   const user = {
     "email": email,
     "username": username,
@@ -243,6 +243,7 @@ export const createNewRoom = (chatRoomName) => {
 
 export const updateUser = (user, userId) => {
   const dataRefUsers = ref(database, `users/${userId}`);
+  console.log(user);
   return update(dataRefUsers, user);
 }
 
