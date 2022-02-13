@@ -1,9 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set, push, query, onValue, update, get, child } from "firebase/database";
+import { getDatabase, ref, set, push, query, onValue, update, get, child, onChildAdded } from "firebase/database";
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
-import { async } from '@firebase/util';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDlWdM3nz51iocnHIN6maKiX7IIH_LoiNw",
@@ -41,6 +40,7 @@ export const login = async (email, password) => {
   return signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     sessionStorage.setItem("userEmail", userCredential.user.email);
+    // getUserData(email);
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -87,13 +87,13 @@ const getAllUsers = () => {
 
 //get user data with userId
 export const getUserData = (email) => {
+  console.log("get user data");
   const dataRefUsers = ref(database, 'users');
   onValue(dataRefUsers, (snapshot) => {
     snapshot.forEach((childSnapshot) => {
       const childKey = childSnapshot.key;
       const childData = childSnapshot.val();
       if (childData.email === email) {
-        // console.log(childData);
         let userId = childKey;
         let username = childData.username;
         let email = childData.email;
@@ -119,11 +119,22 @@ export const getUserData = (email) => {
 
         sessionStorage.setItem("userData", JSON.stringify(userData));
         sessionStorage.setItem("userId", userId);
+        console.log("set to session storage");
       }
     });
   })
-  return true;
 }
+
+// getUserData("test@gmail.com");
+
+export const dataRefUsers = ref(database, 'users');
+// onChildAdded(dataRefUsers, (data) => {
+//   // console.log(typeof(data.val().email));
+//   if (data.val().email === sessionStorage.getItem("userEmail")) {
+//     console.log(data.key);
+//     sessionStorage.setItem("userId", data.key);
+//   }
+// })
 
 // const getUserWithId = (userId) => {
 //   // const userRef = ref(database, `users/${userId}`);

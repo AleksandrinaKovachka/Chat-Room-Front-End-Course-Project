@@ -108,13 +108,20 @@
     // }
   // }
 
-import { getUserData } from "./database";
+import { onChildAdded } from "firebase/database";
+import { dataRefUsers } from "./database";  
 
-let inviteNotification = ["TRoom", "KRoom", "yRoom"];
+// let inviteNotification = ["TRoom", "KRoom", "yRoom"];
+// let newRoomName = "";
+// let numberOfNotification = inviteNotification.length;
+// let userName;
+// let userRooms = [["General", 25], ["Room1", 2], ["Room2", 10], ["Room3", 25]];
+
+let inviteNotification = [];
 let newRoomName = "";
-let numberOfNotification = inviteNotification.length;
-let userName;
-let userRooms = [["General", 25], ["Room1", 2], ["Room2", 10], ["Room3", 25]];
+let numberOfNotification = 0;
+let userName = "";
+let userRooms = [];
 
 let createRoomModal = document.getElementById("modal-container-create-room");
 let createBtn = document.getElementById("create-btn");
@@ -127,48 +134,95 @@ let acceptBtn = document.getElementById("accept-invite");
 let declineBtn = document.getElementById("decline-invite");
 let inviteChatRoomNameEl = document.getElementById("invite-room-name");
 
-window.onload = (event) => {
-  getDataForPage();
-  setDataToPage();
-}
-
-const getDataForPage = () => {
-  console.log("database");
-  // getUserData(sessionStorage.getItem("userEmail")).then(() => {
-  //   userName = sessionStorage.getItem("username");
-  //   inviteNotification = JSON.parse(sessionStorage.getItem("chat-room-names"));
-  //   console.log(inviteNotification);
-  //   userRooms = JSON.parse(sessionStorage.getItem("notification"));
-  //   console.log(userRooms);
-  // });
-
-  userName = sessionStorage.getItem("username");
-  inviteNotification = JSON.parse(sessionStorage.getItem("chat-room-names"));
-  console.log(inviteNotification);
-  userRooms = JSON.parse(sessionStorage.getItem("notification"));
-  console.log(userRooms);
-}
-
-const setDataToPage = () => {
-  console.log("after database");
-  document.getElementById("user-name").textContent = userName;
-  document.getElementById("notification-number").textContent = inviteNotification.length;
-
-  //get rooms from database
-  let chatRooms = document.getElementById("chat-rooms-list");
-  userRooms.forEach((item, index) => {
-    let li = document.createElement("li");
-    li.innerHTML = `<div id="chat-rooms"><button id="chat-room-${index}" class="chat-room-class">${item["chat-name"]}</button><span id="room-new-massage">${item["unread-message"]} new massage</span></div>`;
-    chatRooms.appendChild(li);
-
-    let chatRoom = document.getElementById(`chat-room-${index}`);
-    chatRoom.addEventListener("click", () => {
-      //get name of the room - update unread message to 0 (in the database)
-      sessionStorage.setItem("roomName", item["chat-name"]);
-      location.href = "chat-room.html";
+onChildAdded(dataRefUsers, (data) => {
+  if (data.val().email === sessionStorage.getItem("userEmail")) {
+    let chatRoomName = data.val()["chat-room-names"];
+    let userRooms = [];
+    chatRoomName.forEach(item => {
+      userRooms.push({"chat-name": item["chat-name"], "unread-message": item["unread-message"]});
     })
-  })
-}
+    
+    if(data.val()["notification"]) {
+      let notification = data.val()["notification"];
+      notification.forEach(item => {
+        inviteNotification.push(item);
+      })
+    }
+
+    document.getElementById("user-name").textContent = data.val().username;
+    document.getElementById("notification-number").textContent = inviteNotification.length;
+
+    let chatRooms = document.getElementById("chat-rooms-list");
+
+    userRooms.forEach((item, index) => {
+      let li = document.createElement("li");
+      li.innerHTML = `<div id="chat-rooms"><button id="chat-room-${index}" class="chat-room-class">${item["chat-name"]}</button><span id="room-new-massage">${item["unread-message"]} new massage</span></div>`;
+      chatRooms.appendChild(li);
+
+      let chatRoom = document.getElementById(`chat-room-${index}`);
+      chatRoom.addEventListener("click", () => {
+        //get name of the room - update unread message to 0 (in the database)
+        sessionStorage.setItem("roomName", item["chat-name"]);
+        location.href = "chat-room.html";
+      })
+    })
+  }
+})
+
+// onChildChanged(dataRefUsers, (data) => {
+
+// })
+
+
+// window.onload = (event) => {
+//   getDataForPage();
+//   setDataToPage();
+// }
+
+// const getDataForPage = () => {
+//   console.log("database");
+//   // getUserData(sessionStorage.getItem("userEmail")).then(() => {
+//   //   userName = sessionStorage.getItem("username");
+//   //   inviteNotification = JSON.parse(sessionStorage.getItem("chat-room-names"));
+//   //   console.log(inviteNotification);
+//   //   userRooms = JSON.parse(sessionStorage.getItem("notification"));
+//   //   console.log(userRooms);
+//   // });
+
+//   // getUserData(sessionStorage.getItem("userEmail")).then(() => {
+//   //   const user = sessionStorage.getItem("userData");
+  
+//   //   console.log(user);
+//   // })
+
+
+//   // userName = sessionStorage.getItem("username");
+//   // inviteNotification = JSON.parse(sessionStorage.getItem("chat-room-names"));
+//   // console.log(inviteNotification);
+//   // userRooms = JSON.parse(sessionStorage.getItem("notification"));
+//   // console.log(userRooms);
+// }
+
+// const setDataToPage = () => {
+//   console.log("after database");
+//   document.getElementById("user-name").textContent = userName;
+//   document.getElementById("notification-number").textContent = inviteNotification.length;
+
+//   //get rooms from database
+//   let chatRooms = document.getElementById("chat-rooms-list");
+//   userRooms.forEach((item, index) => {
+//     let li = document.createElement("li");
+//     li.innerHTML = `<div id="chat-rooms"><button id="chat-room-${index}" class="chat-room-class">${item["chat-name"]}</button><span id="room-new-massage">${item["unread-message"]} new massage</span></div>`;
+//     chatRooms.appendChild(li);
+
+//     let chatRoom = document.getElementById(`chat-room-${index}`);
+//     chatRoom.addEventListener("click", () => {
+//       //get name of the room - update unread message to 0 (in the database)
+//       sessionStorage.setItem("roomName", item["chat-name"]);
+//       location.href = "chat-room.html";
+//     })
+//   })
+// }
 
 window.addEventListener("click", (event) => {
   if (event.target == createRoomModal) {

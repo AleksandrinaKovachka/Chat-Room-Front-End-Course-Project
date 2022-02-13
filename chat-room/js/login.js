@@ -14,7 +14,8 @@ loginForm.addEventListener("submit", (event) => {
 
     login(email, password).then(() => {
         validUser = sessionStorage.getItem("userEmail");
-        if (validUser) {   
+        if (validUser) { 
+            // getUserData(email); 
             location.href = "user-chat-room.html";
         } else {
             alert("Wrong credentials");
