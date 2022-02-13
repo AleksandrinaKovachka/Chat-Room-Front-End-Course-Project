@@ -2,7 +2,7 @@ body {
     background-color: #e4e6da;
 }
 
-#main {
+.main {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -10,7 +10,7 @@ body {
     align-content: center;
 }
 
-#inner-body {
+.inner-body {
     text-align: center;
     background-color: #ffff;
     flex-wrap: wrap;
@@ -19,6 +19,20 @@ body {
     padding: 50px;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
+}
+
+.basic-btn {
+    margin: 10px 10px 10px 10px;
+    background-color: #38664d;
+    color: white;
+    padding: 10px 40px;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px #38664d;
+}
+
+.basic-btn:hover {
+    background-color: #213d2e;
 }
 
 .sign-text {
@@ -42,15 +56,6 @@ input {
     width: 100%;
 }
 
-.form-btn {
-    margin: 10px 10px 10px 10px;
-    background-color: #38664d;
-    color: white;
-    padding: 10px 40px;
-    text-decoration: none;
-    border-radius: 5px; 
-}
-
-.form-btn:hover {
-    background-color: #213d2e;
+#logo {
+    width: 100px;
 }

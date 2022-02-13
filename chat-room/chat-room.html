@@ -8,13 +8,13 @@
     <title>Chat Room</title>
 </head>
 <body>
-    <section id="inner-body">
-        <header id="nav">
+    <section class="inner-body">
+        <header class="nav">
             <a href="user-chat-room.html" class="flex0" id="back-btn">Back</a>
             <p id="chat-name">ChatName</p>
             <button id="invite-user" class="flex0">Invite</button>
         </header>
-        <main>
+        <div>
             <hr id="white">
             <div>
                 <ul id="msg-list">
@@ -24,7 +24,7 @@
                 <input type="text" placeholder="Input message..." id="msg-input">
                 <button id="send-msg-btn" class="flex0">Send</button>
             </div>
-        </main>
+        </div>
     </section>
     <div id="modal-container-invite-users" class="hidden">
         <div class="modal-content">
@@ -33,12 +33,10 @@
                     <span class="heading-size">Users that can be invite in chat room:</span>
                     <span id="chat-name-modal" class="heading-size">ChatName</span>
                 </header>
-                <main>
-                    <div>
-                        <ul id="user-list">
-                        </ul>
-                    </div>
-                </main>
+                <div>
+                    <ul id="user-list">
+                    </ul>
+                </div>
             </section>
         </div>
     </div>

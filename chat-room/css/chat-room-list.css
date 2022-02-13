@@ -7,7 +7,7 @@ body {
     align-content: center;
 }
 
-#inner-body {
+.inner-body {
     text-align: center;
     background-color: #ffff;
     flex-wrap: wrap;
@@ -35,18 +35,6 @@ body {
     border: 2px solid #213d2e;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-
-/* #add-room {
-    background-color: #38664d;
-    color: white;
-    padding: 10px 40px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-#add-room:hover {
-    background-color: #213d2e;
-} */
 
 .add-room-class {
     background-color: #38664d;

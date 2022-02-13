@@ -1,18 +1,7 @@
+
 * {
     box-sizing: border-box; /*makes padding and borders sizes included in the width and height*/
 }
-
-/* #inner-body {
-    max-width: 600px;
-    width: 100%;
-    background-color: #b0dbc3;
-    padding: 5px;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-} */
 
 body {
     background-color: #e4e6da;
@@ -23,7 +12,7 @@ body {
     align-content: center;
 }
 
-#inner-body {
+.inner-body {
     text-align: center;
     background-color: #ffff;
     flex-wrap: wrap;
@@ -34,7 +23,7 @@ body {
     border-radius: 5px;
 }
 
-#nav {
+.nav {
     display: flex;
     gap: 15px;
     height: 60px;
@@ -44,11 +33,11 @@ body {
     align-items: center;
 }
 
-#nav > * {
+.nav > * {
     flex: 1;
 }
 
-#nav > .flex0 {
+.nav > .flex0 {
     flex: 0;
 }
 
@@ -87,35 +76,20 @@ body {
 
 #user-name {
     font-size: 12px;
-    margin: 0; /*by default is 18...*/
+    margin: 0; /*remove default value*/
 }
 
-#modal-container-create-room {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    padding-top: 300px; /* Location of the box */
+.modal-container {
+    display: none;
+    position: fixed;
+    padding-top: 300px;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-
-
-#modal-container-invite {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    padding-top: 300px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
 }
 
 .modal-content {
@@ -126,20 +100,6 @@ body {
     padding: 10px;
     width: 40%;
 }
-
-/* .close {
-    color: #38664d;
-    float: right;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-} */
 
 #white {
     color: white;
@@ -154,9 +114,6 @@ body {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 5px;
     padding: 5px 5px 5px 5px;
-    /* overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1; */
 }
 
 .dropdown-content ul {
@@ -166,7 +123,6 @@ body {
   
 .dropdown-content li {
     color: black;
-    /* text-decoration: none; */
     display: block;
 }
   
@@ -192,7 +148,7 @@ body {
     color: #213d2e;
 }
 
-#main {
+.main {
     padding: 5px;
 }
 
@@ -214,20 +170,6 @@ body {
 #logout-btn:hover {
     background-color: #38664d;
 }
-/* 
-#chat-room {
-    text-decoration: none;
-    color: #213d2e;
-    font-size: 20px;
-
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-} */
 
 .chat-room-class {
     text-decoration: none;
@@ -257,15 +199,6 @@ body {
     background-color: #38664d;
 }
 
-/* #invite-btn {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-} */
 
 .invite-btn-class {
     background: none;
