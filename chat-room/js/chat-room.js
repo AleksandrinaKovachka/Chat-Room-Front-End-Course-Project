@@ -217,7 +217,6 @@ inviteUserBtn.addEventListener("click", () => {
           updateUser(userDataToUpdate, user.userId);
         }
       })
-      // usersName.splice(index, 1);
 
       inviteUserModal.style.display = "none";
     })

@@ -3,7 +3,6 @@ import { dataRefUsers, createNewRoom, updateUser } from "./database";
 
 let inviteNotification = [];
 let newRoomName = "";
-let numberOfNotification = 0;
 let userId = "";
 let userName = "";
 let userEmail = "";
@@ -47,12 +46,11 @@ onChildAdded(dataRefUsers, (data) => {
 
     userRooms.forEach((item, index) => {
       let li = document.createElement("li");
-      li.innerHTML = `<div id="chat-rooms"><button id="chat-room-${index}" class="chat-room-class">${item["chat-name"]}</button><span id="room-new-massage">${item["unread-message"]} new massage</span></div>`;
+      li.innerHTML = `<div id="chat-rooms"><button id="chat-room-${index}" class="chat-room-class">${item["chat-name"]}</button><span id="room-new-massage">${item["unread-message"]} new message</span></div>`;
       chatRooms.appendChild(li);
 
       let chatRoom = document.getElementById(`chat-room-${index}`);
       chatRoom.addEventListener("click", () => {
-        //get name of the room - update unread message to 0 (in the database)
         sessionStorage.setItem("roomName", item["chat-name"]);
         location.href = "chat-room.html";
       })
@@ -88,12 +86,11 @@ onChildChanged(dataRefUsers, (data) => {
 
     userRooms.forEach((item, index) => {
       let li = document.createElement("li");
-      li.innerHTML = `<div id="chat-rooms"><button id="chat-room-${index}" class="chat-room-class">${item["chat-name"]}</button><span id="room-new-massage">${item["unread-message"]} new massage</span></div>`;
+      li.innerHTML = `<div id="chat-rooms"><button id="chat-room-${index}" class="chat-room-class">${item["chat-name"]}</button><span id="room-new-massage">${item["unread-message"]} new message</span></div>`;
       chatRooms.appendChild(li);
 
       let chatRoom = document.getElementById(`chat-room-${index}`);
       chatRoom.addEventListener("click", () => {
-        //get name of the room - update unread message to 0 (in the database)
         sessionStorage.setItem("roomName", item["chat-name"]);
         location.href = "chat-room.html";
       })
@@ -117,21 +114,14 @@ newRoomBtn.addEventListener("click", () => {
   newRoomName = document.getElementById("create-room-name").value;
   document.getElementById("create-room-name").value = "";
   createRoomModal.style.display = "none";
-  updateRoomsOfUser();
-  //create new rooms
-  createNewRoom(newRoomName);
-  //listen for update in user rooms - update user chatNames with room names
   userRooms.push({
     "chat-name": newRoomName,
     "unread-message": 0
   })
-  // const updateUserData = {
-  //   "username": userName,
-  //   "email": userEmail,
-  //   "chat-room-names": userRooms,
-  //   "notification": inviteNotification
-  // }
-  // updateUser(updateUserData, userId);
+  updateRoomsOfUser();
+  //create new rooms
+  createNewRoom(newRoomName);
+  //listen for update in user rooms - update user chatNames with room names
 })
 
 const updateRoomsOfUser = () => {

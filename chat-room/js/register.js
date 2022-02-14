@@ -12,8 +12,6 @@ registerForm.addEventListener("submit", (event) => {
     const confirmPassword = formData.get('confirm-password');
     
     if(password === confirmPassword) {
-        // sessionStorage.setItem("username", username)
-
         let validUser;
         sessionStorage.clear();
         register(email, password, username).then(() => {
@@ -24,10 +22,5 @@ registerForm.addEventListener("submit", (event) => {
               alert("Wrong credentials");
           }
         })
-
-        // location.href = "user-chat-room.html";
     }
-    // else {
-    //     alert("Wrong credentials")
-    // }
 })

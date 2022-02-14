@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set, push, query, onValue, update, get, child, onChildAdded } from "firebase/database";
 
@@ -25,7 +24,6 @@ export const register = (email, password, username) => {
   .then((userCredential) => {
     createUser(username, email);
     sessionStorage.setItem("userEmail", userCredential.user.email);
-    // const user = createUser(username, email);
  })
   .catch((error) => {
     const errorCode = error.code;
@@ -40,7 +38,6 @@ export const login = async (email, password) => {
   return signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     sessionStorage.setItem("userEmail", userCredential.user.email);
-    // getUserData(email);
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -49,7 +46,6 @@ export const login = async (email, password) => {
   });
 }
 
-//TODO: users
 //create user
 const createUser = (username, email) => {
   console.log("new user");
@@ -73,16 +69,11 @@ const getAllUsers = () => {
     snapshot.forEach((childSnapshot) => {
       const childKey = childSnapshot.key;
       const childData = childSnapshot.val();
-      // let tempArr = [];
-      // tempArr.push(childKey);
-      // tempArr.push(childData.username);
-      // userNameArr[index++] = childKey;
       const element = childData.username;
       userNameArr.push(childData.username); 
     });
     console.log(userNameArr);
   })
-  // return userNameArr;
 }
 
 //get user data with userId
@@ -127,116 +118,12 @@ export const getUserData = (email) => {
 
 
 export const dataRefUsers = ref(database, 'users');
-// onChildAdded(dataRefUsers, (data) => {
-//   // console.log(typeof(data.val().email));
-//   if (data.val().email === sessionStorage.getItem("userEmail")) {
-//     console.log(data.key);
-//     sessionStorage.setItem("userId", data.key);
-//   }
-// })
-
-// const getUserWithId = (userId) => {
-//   // const userRef = ref(database, `users/${userId}`);
-//   get(child(database, `users/${userId}`)).then((snapshot) => {
-//     if (snapshot.exists()) {
-//       console.log(snapshot.val());
-//     } else {
-//       console.log("No data available");
-//     }
-//   }).catch((error) => {
-//     console.error(error);
-//   });
-// }
-
-// console.log(getUserWithId("-Mvi6ppfWFUnAB8kM2jo"));
-
-// export const getUserData = async (email) => {
-//   console.log("Test");
-//   const dataRefUsers = ref(database, 'users');
-//   onValue(dataRefUsers, (snapshot) => {
-//     snapshot.forEach((childSnapshot) => {
-//       const childKey = childSnapshot.key;
-//       const childData = childSnapshot.val();
-//       if (childData.email === email) {
-//         console.log(childData);
-//         sessionStorage.setItem("userId", childKey);
-//         sessionStorage.setItem("username", childData.username);
-//         sessionStorage.setItem("email", email);
-//         sessionStorage.setItem("chat-room-names", JSON.stringify(childData["chat-room-names"]));
-//         if(childData["notification"]) {
-//           sessionStorage.setItem("notification", JSON.stringify(childData["notification"]));
-//         }
-//       }
-//     });
-//   })
-//   return dataRefUsers;
-// }
-
-// const getUserData = (key) => {
-//   const dataRefUsers = ref(database, `users/${key}`);
-//   let userData = {};
-//   onValue(dataRefUsers, (snapshot) => {
-//     // console.log(snapshot.val());
-//     console.log(snapshot.val());
-//     // Object.assign(userData, snapshot.val());
-//     // console.log(userData);
-//   })
-
-//   // console.log(userData); 
-//   return userData;
-// }
-
-// const updateUser = (user, userId) => {
-//   const dataRefUsers = ref(database, `users/${userId}`);
-//   return update(dataRefUsers, user);
-// }
-
-// const updateUserTest = () => {
-//   const userId = "-Mvi6ppfWFUnAB8kM2jo";
-//   let userData = getUserData(userId);
-//   console.log(userData);
-//   // console.log(JSON.parse(JSON.stringify(userData)));
-//   // console.log(userData.username);
-//   // const newUserData = {
-//   //   "chat-room-names": userData["chat-room-names"],
-//   //   "email": userData["email"],
-//   //   "username": "Test"
-//   // };
-//   // console.log(newUserData);
-
-//   // updateUser(userData, userId);
-// }
-
-// updateUserTest();
-
-//add chat room to user
-//change unreaf message
-//change notification
-
-//TODO: chat room
-//create chat room
-// const createNewRoom = (chatRoomName) => {
-//   const dataRefRooms = ref(database, "chat-rooms");
-//   const chatRoomRef = push(dataRefRooms);
-//   const chatRoom = {
-//     "name": chatRoomName,
-//     "messages": [],
-//     "user-to-invite": [] // get all users
-//   }
-//   return set(chatRoomRef, chatRoom);
-// }
-
-//add message
-//change list of invite users
-
-//----------------------------------------------------Chat Room---------------------------------------------
-
 
 export const createNewRoom = (chatRoomName) => {
   const dataRefRooms = ref(database, 'chat-rooms');
   const chatRoom = {
     "name": chatRoomName,
-    "messages": [] // {"username": "date": "message"}
+    "messages": []
   }
   return push(dataRefRooms, chatRoom);
 }

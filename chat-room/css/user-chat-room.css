@@ -1,6 +1,6 @@
 
 * {
-    box-sizing: border-box; /*makes padding and borders sizes included in the width and height*/
+    box-sizing: border-box;
 }
 
 body {
