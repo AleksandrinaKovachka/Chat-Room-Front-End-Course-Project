@@ -166,23 +166,24 @@ sendMsgBtn.addEventListener("click", () => {
   usersData.forEach(user => {
     user["chat-room-names"].forEach(item => {
       if(item["chat-name"] === chatName) {
-        item["unread-message"] += 1;
+        item["unread-message"] = item["unread-message"] + 1;
 
         if(user["email"] === sessionStorage.getItem("userEmail")) {
           console.log("I am");
           item["unread-message"] = 0;
         }
+
+        const userDataToUpdate = {
+          "email": user.email,
+          "username": user.username,
+          "chat-room-names": user["chat-room-names"],
+          "notification": user["notification"]
+        };
+    
+        updateUser(userDataToUpdate, user["userId"]);
       }
     })
 
-    const userDataToUpdate = {
-      "email": user.email,
-      "username": user.username,
-      "chat-room-names": user["chat-room-names"],
-      "notification": user["notification"]
-    };
-
-    updateUser(userDataToUpdate, user["userId"]);
   })
 
   messageInput.value = "";

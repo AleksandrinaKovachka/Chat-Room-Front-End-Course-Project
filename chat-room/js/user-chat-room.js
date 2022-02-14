@@ -51,12 +51,23 @@ onChildAdded(dataRefUsers, (data) => {
 
       let chatRoom = document.getElementById(`chat-room-${index}`);
       chatRoom.addEventListener("click", () => {
+        //update unread message in user database
+        updateChatUnreadMessage(item["chat-name"]);
         sessionStorage.setItem("roomName", item["chat-name"]);
         location.href = "chat-room.html";
       })
     })
   }
 })
+
+const updateChatUnreadMessage = (chatName) => {
+  userRooms.forEach(item => {
+    if(item["chat-name"] === chatName) {
+      item["unread-message"] = 0;
+    }
+  })
+  updateRoomsOfUser();
+}
 
 onChildChanged(dataRefUsers, (data) => {
   if (data.val().email === sessionStorage.getItem("userEmail")) {
@@ -92,6 +103,7 @@ onChildChanged(dataRefUsers, (data) => {
       let chatRoom = document.getElementById(`chat-room-${index}`);
       chatRoom.addEventListener("click", () => {
         sessionStorage.setItem("roomName", item["chat-name"]);
+        updateChatUnreadMessage(item["chat-name"]);
         location.href = "chat-room.html";
       })
     })
